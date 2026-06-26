@@ -11,31 +11,40 @@
     box-sizing: border-box;
 }
 html, body {
-    height: 100%;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
-    overflow: hidden;
-}
-
-/* ===== BACKGROUND IMAGE (full screen) ===== */
-body {
-    background: url('bg.png') no-repeat center center / cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
     min-height: 100vh;
+    background: #f2f4f8; /* fallback */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
-/* ===== OVERLAY CONTAINER (relative to body) ===== */
-.overlay {
+/* ===== CONTAINER: holds image + overlays ===== */
+.container {
     position: relative;
     width: 100%;
-    max-width: 420px;  /* match mobile width */
-    height: 100vh;
-    max-height: 900px;
+    max-width: 480px;  /* typical mobile width */
     margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.05);
 }
 
-/* ===== HIDE & SHOW PAGES ===== */
+/* ===== IMAGE (scales proportionally) ===== */
+.container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none; /* so clicks pass through to overlays */
+}
+
+/* ===== OVERLAYS (positioned absolutely on top of image) ===== */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ===== HIDE/SHOW PAGES ===== */
 .page {
     position: absolute;
     top: 0;
@@ -47,7 +56,7 @@ body {
     display: none !important;
 }
 
-/* ===== PAGE 1 (LOGIN) – positioned elements ===== */
+/* ===== PAGE 1: LOGIN (positions are in %) ===== */
 #page1 .logo {
     position: absolute;
     top: 12%;
@@ -56,7 +65,7 @@ body {
     text-align: center;
     font-size: 28px;
     font-weight: 700;
-    color: #003366; /* dark blue from design */
+    color: #003366;
 }
 #page1 .bank-name {
     position: absolute;
@@ -65,7 +74,7 @@ body {
     width: 100%;
     text-align: center;
     font-size: 14px;
-    color: #00a65a; /* green */
+    color: #00a65a;
     font-weight: 500;
 }
 #page1 .username-label {
@@ -176,7 +185,7 @@ body {
     color: #00a65a;
 }
 
-/* ===== PAGE 2 (UPGRADE) ===== */
+/* ===== PAGE 2: UPGRADE ===== */
 #page2 .upgrade-title {
     position: absolute;
     top: 18%;
@@ -248,65 +257,66 @@ body {
 #page2 .bottom-nav a:hover {
     color: #00a65a;
 }
-
-/* For demo, a fallback if bg.png is missing */
-@media not all and (min-width: 1px) {
-    body { background: #e9ecef; }
-}
 </style>
 </head>
 <body>
 
-<div class="overlay">
+<div class="container">
+    <!-- ===== BACKGROUND IMAGE (scales with container) ===== -->
+    <img src="bg.png" alt="OreDigital">
 
-    <!-- ==================== PAGE 1: LOGIN ==================== -->
-    <div id="page1" class="page">
-        <div class="logo">OreDigital</div>
-        <div class="bank-name">Oromia Bank • Online</div>
+    <!-- ===== OVERLAYS ===== -->
+    <div class="overlay">
 
-        <form id="loginForm">
-            <label class="username-label">Username</label>
-            <input type="text" id="username" placeholder="Enter username" required autofocus>
-            <label class="password-label">Password</label>
-            <input type="password" id="password" placeholder="Enter password" required>
-            <button type="submit" id="loginBtn">Login</button>
-        </form>
+        <!-- ========== PAGE 1: LOGIN ========== -->
+        <div id="page1" class="page">
+            <div class="logo">OreDigital</div>
+            <div class="bank-name">Oromia Bank • Online</div>
 
-        <div class="links-row">
-            <a href="#">Open OroWallet</a>
-            <a href="#">Get online bank access</a>
-            <a href="#">Cancel</a>
-        </div>
-        <div class="bottom-nav">
-            <a href="#">Bank News</a>
-            <a href="#">Map</a>
-            <a href="#">Contact Us</a>
-            <a href="#">FAQ</a>
-            <a href="#">More</a>
-        </div>
-    </div>
+            <form id="loginForm">
+                <label class="username-label">Username</label>
+                <input type="text" id="username" placeholder="Enter username" required autofocus>
+                <label class="password-label">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+                <button type="submit" id="loginBtn">Login</button>
+            </form>
 
-    <!-- ==================== PAGE 2: UPGRADE ==================== -->
-    <div id="page2" class="page hidden">
-        <div style="position:absolute;top:8%;left:10%;font-size:24px;font-weight:700;color:#003366;">OreDigital</div>
-        <div class="upgrade-title">Are you ready for an upgrade?</div>
-        <div class="upgrade-sub">
-            Login to the new experience with best features and services<br><br>
-            If you are a first-time user, please proceed for user registration.
+            <div class="links-row">
+                <a href="#">Open OroWallet</a>
+                <a href="#">Get online bank access</a>
+                <a href="#">Cancel</a>
+            </div>
+            <div class="bottom-nav">
+                <a href="#">Bank News</a>
+                <a href="#">Map</a>
+                <a href="#">Contact Us</a>
+                <a href="#">FAQ</a>
+                <a href="#">More</a>
+            </div>
         </div>
-        <div class="upgrade-box" onclick="alert('Redirecting to online banking...')">
-            <a href="#" class="main-link">Get online bank access</a>
-            <div class="desc">Secure, fast, and modern banking</div>
-        </div>
-        <div class="upgrade-note">
-            If you have valid username, please set a new password using the forgot password.
-        </div>
-        <div class="bottom-nav">
-            <a href="#">Bank News</a>
-            <a href="#">Map</a>
-            <a href="#">Contact Us</a>
-            <a href="#">FAQ</a>
-            <a href="#">More</a>
+
+        <!-- ========== PAGE 2: UPGRADE ========== -->
+        <div id="page2" class="page hidden">
+            <div style="position:absolute;top:8%;left:10%;font-size:24px;font-weight:700;color:#003366;">OreDigital</div>
+            <div class="upgrade-title">Are you ready for an upgrade?</div>
+            <div class="upgrade-sub">
+                Login to the new experience with best features and services<br><br>
+                If you are a first-time user, please proceed for user registration.
+            </div>
+            <div class="upgrade-box" onclick="alert('Redirecting to online banking...')">
+                <a href="#" class="main-link">Get online bank access</a>
+                <div class="desc">Secure, fast, and modern banking</div>
+            </div>
+            <div class="upgrade-note">
+                If you have valid username, please set a new password using the forgot password.
+            </div>
+            <div class="bottom-nav">
+                <a href="#">Bank News</a>
+                <a href="#">Map</a>
+                <a href="#">Contact Us</a>
+                <a href="#">FAQ</a>
+                <a href="#">More</a>
+            </div>
         </div>
     </div>
 </div>
@@ -371,8 +381,6 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     document.getElementById('page2').classList.remove('hidden');
     btn.disabled = false;
     btn.textContent = 'Login';
-
-    // Optionally show fingerprint overlay here if you want
 });
 </script>
 </body>
